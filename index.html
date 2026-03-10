@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study+ | Organizador de Estudos</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+<h1>Study+</h1>
+<p>Organizador de Estudos</p>
+</header>
+
+<main class="container">
+
+<section class="card">
+
+<h2>Planejamento do Dia</h2>
+
+<ul>
+<li>Matemática - 1h</li>
+<li>História - 40min</li>
+<li>Revisão de Inglês</li>
+</ul>
+
+</section>
+
+<section class="card">
+
+<h2>Matérias</h2>
+
+<ul>
+<li>Matemática</li>
+<li>Português</li>
+<li>História</li>
+<li>Geografia</li>
+</ul>
+
+</section>
+
+<section class="card">
+
+<h2>Tarefas</h2>
+
+<div class="taskInput">
+
+<input type="text" id="novaTarefa" placeholder="Nova tarefa...">
+
+<button onclick="addTarefa()">Adicionar</button>
+
+</div>
+
+<ul id="listaTarefas">
+
+<li onclick="remover(this)">✔ Fazer exercícios de matemática</li>
+
+<li onclick="remover(this)">✔ Ler capítulo de história</li>
+
+</ul>
+
+</section>
+
+<section class="card whiteboardCard">
+
+<h2>Whiteboard</h2>
+
+<canvas id="board"></canvas>
+
+<div class="boardButtons">
+
+<button onclick="limpar()">Limpar</button>
+
+<button onclick="expandir()">Expandir</button>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+<p>Study+ © 2026</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

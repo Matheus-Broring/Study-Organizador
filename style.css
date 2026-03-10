@@ -1,0 +1,235 @@
+*{
+font-family:'Oswald', sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#fff8e8;
+color:#333;
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+/* Header */
+
+header{
+background:#ffbd59;
+text-align:center;
+padding:25px;
+box-shadow:0 3px 10px rgba(0,0,0,0.15);
+width: auto;
+height: 1vh;
+}
+/* header:hover{
+    transform:scale(1.1);
+    transition: 0.5s;
+} */
+
+header h1{
+font-size:100%;
+}
+header h2{
+font-size: 10%;
+}
+
+header h1:hover{
+font-size:32px; 
+color: aqua;
+}
+
+header p{
+font-size:16px;
+}
+
+/* Container */
+
+.container{
+
+flex:1;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+padding:30px;
+
+}
+
+/* Cards */
+
+.card{
+
+background:white;
+
+padding:20px;
+
+border-radius:12px;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.12);
+
+transition:0.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 12px 25px rgba(0,0,0,0.18);
+
+}
+
+.card h2{
+
+margin-bottom:10px;
+
+color:#ffbd59;
+
+}
+
+.card ul{
+
+list-style:none;
+
+}
+
+.card li{
+
+padding:8px;
+
+cursor:pointer;
+
+border-radius:6px;
+
+}
+
+.card li:hover{
+
+background:#fff3d9;
+
+}
+
+/* Tarefas */
+
+.taskInput{
+
+display:flex;
+
+gap:10px;
+
+margin-bottom:10px;
+
+}
+
+.taskInput input{
+
+flex:1;
+
+padding:8px;
+
+border-radius:6px;
+
+border:1px solid #ccc;
+
+}
+
+.taskInput button{
+
+padding:8px 12px;
+
+border:none;
+
+background:#ffbd59;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+/* Whiteboard */
+
+canvas{
+
+width:100%;
+
+height:300px;
+
+border:2px solid #ffbd59;
+
+border-radius:8px;
+
+background:white;
+
+cursor:crosshair;
+
+}
+
+.boardButtons{
+
+margin-top:10px;
+
+display:flex;
+
+gap:10px;
+
+}
+
+.boardButtons button{
+
+padding:8px 15px;
+
+border:none;
+
+background:#ffbd59;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+/* Whiteboard expandido */
+
+.fullscreen{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100vw;
+
+height:100vh;
+
+background:white;
+
+z-index:1000;
+
+padding:20px;
+
+}
+
+.fullscreen canvas{
+
+height:80vh;
+
+}
+
+/* Footer */
+
+footer{
+
+text-align:center;
+
+padding:15px;
+
+background:#ffbd59;
+
+}
