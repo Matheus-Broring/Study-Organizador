@@ -1,85 +1,107 @@
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
-
 let desenhando = false;
+let expandido = false;
 
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
+function ajustarCanvasAltura() {
+  // Pega a altura real do canvas (300px via CSS)
+  const style = getComputedStyle(canvas);
+  const height = parseInt(style.height);
+  canvas.height = height;
+}
+ajustarCanvasAltura();
 
-canvas.addEventListener("mousedown", () => {
-desenhando = true;
+canvas.addEventListener("mousedown", (e) => {
+  desenhando = true;
+  ctx.beginPath();
+  ctx.moveTo(e.offsetX, e.offsetY);
 });
-
 canvas.addEventListener("mouseup", () => {
-desenhando = false;
-ctx.beginPath();
+  desenhando = false;
+  ctx.beginPath();
+});
+canvas.addEventListener("mouseleave", () => {
+  desenhando = false;
+  ctx.beginPath();
+});
+canvas.addEventListener("mousemove", (e) => {
+  if (!desenhando) return;
+  ctx.lineWidth = 3;
+  ctx.lineCap = "round";
+  ctx.strokeStyle = "#000";
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
 });
 
-canvas.addEventListener("mousemove", desenhar);
+const inputTarefa = document.getElementById("novaTarefa");
+const listaTarefas = document.getElementById("listaTarefas");
 
-function desenhar(e){
-
-if(!desenhando) return;
-
-ctx.lineWidth = 3;
-ctx.lineCap = "round";
-
-ctx.lineTo(e.offsetX, e.offsetY);
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(e.offsetX, e.offsetY);
-
+function addTarefa() {
+  const valor = inputTarefa.value.trim();
+  if (!valor) return;
+  const li = document.createElement("li");
+  li.textContent = "✔ " + valor;
+  li.onclick = () => remover(li);
+  listaTarefas.appendChild(li);
+  inputTarefa.value = "";
 }
 
-function limpar(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
+function remover(el) {
+  el.remove();
 }
 
-/* Expandir Whiteboard */
-
-function expandir(){
-
-const card = document.querySelector(".whiteboardCard");
-
-card.classList.toggle("fullscreen");
-
-setTimeout(() => {
-
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
-
-},200);
-
+function limpar() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-/* Adicionar tarefas */
 
-function addTarefa(){
+// Caixa de texto no duplo clique
+let textoAtivo = false;
+let inputTexto = null;
+let textoPosX = 0;
+let textoPosY = 0;
 
-const input = document.getElementById("novaTarefa");
-const lista = document.getElementById("listaTarefas");
+canvas.addEventListener("dblclick", (e) => {
+  if (textoAtivo) return;
+  textoPosX = e.offsetX;
+  textoPosY = e.offsetY;
+  criarInputTexto(e.clientX, e.clientY);
+});
 
-if(input.value === "") return;
+function criarInputTexto(clientX, clientY) {
+  textoAtivo = true;
+  inputTexto = document.createElement("input");
+  inputTexto.type = "text";
+  inputTexto.placeholder = "Digite aqui...";
+  inputTexto.style.position = "fixed";
+  inputTexto.style.left = clientX + "px";
+  inputTexto.style.top = clientY + "px";
+  inputTexto.style.fontSize = "18px";
+  inputTexto.style.padding = "6px";
+  inputTexto.style.border = "2px solid #333";
+  inputTexto.style.borderRadius = "6px";
+  inputTexto.style.zIndex = "10000";
+  inputTexto.style.minWidth = "150px";
+  inputTexto.style.outline = "none";
 
-const li = document.createElement("li");
+  document.body.appendChild(inputTexto);
+  inputTexto.focus();
 
-li.textContent = "⬜ " + input.value;
-
-li.onclick = function(){
-remover(li);
-}
-
-lista.appendChild(li);
-
-input.value = "";
-
-}
-
-/* Remover tarefa */
-
-function remover(elemento){
-
-elemento.remove();
-
+  inputTexto.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      const texto = inputTexto.value.trim();
+      if (texto) {
+        ctx.font = "20px Oswald, sans-serif";
+        ctx.fillStyle = "#000";
+        ctx.fillText(texto, textoPosX, textoPosY);
+      }
+      inputTexto.remove();
+      textoAtivo = false;
+      inputTexto = null;
+    } else if (event.key === "Escape") {
+      inputTexto.remove();
+      textoAtivo = false;
+      inputTexto = null;
+    }
+  });
 }
