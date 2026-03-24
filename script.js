@@ -105,3 +105,70 @@ function criarInputTexto(clientX, clientY) {
     }
   });
 }
+// Drag & Drop funcional
+const container = document.querySelector('.container');
+
+container.addEventListener('dragstart', (e) => {
+    if (e.target.classList.contains('card')) {
+        e.target.classList.add('dragging');
+    }
+});
+
+container.addEventListener('dragend', (e) => {
+    if (e.target.classList.contains('card')) {
+        e.target.classList.remove('dragging');
+    }
+});
+
+container.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(container, e.clientY);
+    const dragging = document.querySelector('.dragging');
+    
+    if (afterElement == null) {
+        container.appendChild(dragging);
+    } else {
+        container.insertBefore(dragging, afterElement);
+    }
+});
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.card:not(.dragging)')];
+    
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+// Botão sair
+document.querySelector('.sair').addEventListener('click', function(e) {
+    e.preventDefault();
+    this.classList.toggle('clicado');
+});
+
+// Suas outras funções (addTarefa, remover, limpar)...
+function addTarefa() {
+    const input = document.getElementById('novaTarefa');
+    const li = document.createElement('li');
+    li.textContent = '✔ ' + input.value;
+    li.onclick = function() { remover(this); };
+    document.getElementById('listaTarefas').appendChild(li);
+    input.value = '';
+}
+
+function remover(li) {
+    li.remove();
+}
+
+function limpar() {
+    const canvas = document.getElementById('board');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}

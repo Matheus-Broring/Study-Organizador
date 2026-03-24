@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header></header>
+<header><a href="inicio.html"><img src="img/porta.png" class="sair" alt=""></a></header>
 <main class="container">
-  <section class="card">
+  <section class="card" draggable="true">
     <h2>Planejamento do Dia</h2>
     <ul>
       <li>Matemática - 1h</li>
@@ -18,7 +18,7 @@
       <li>Revisão de Inglês</li>
     </ul>
   </section>
-  <section class="card">
+  <section class="card" draggable="true">
     <h2>Matérias</h2>
     <ul>
       <li>Matemática</li>
@@ -27,7 +27,7 @@
       <li>Geografia</li>
     </ul>
   </section>
-  <section class="card">
+  <section class="card" draggable="true">
     <h2>Tarefas</h2>
     <div class="taskInput">
       <input type="text" id="novaTarefa" placeholder="Nova tarefa..." />
@@ -38,13 +38,14 @@
       <li onclick="remover(this)">✔ Ler capítulo de história</li>
     </ul>
   </section>
-  <section class="card whiteboardCard">
+  <section class="card whiteboardCard" draggable="true">
     <h2>Whiteboard</h2>
     <canvas id="board"></canvas>
     <div class="boardButtons">
       <button onclick="limpar()">Limpar</button>
     </div>
   </section>
+
 </main>
 <footer>Study+ © 2026</footer>
 <script src="script.js"></script>
