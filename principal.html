@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Study+ | Organizador de Estudos</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="body1">
+<header><a href="index.html"><img src="img/porta.png" class="sair" alt="Sair"></a></header>
+<main class="container">
+  
+  <!-- Card 1 -->
+  <section class="card">
+    <div class="card-header drag-handle">
+      <div class="drag-lines">
+        <div class="line-short"></div>
+        <div class="line-long"></div>
+      </div>
+    </div>
+    <div class="card-content">
+      <h2>Planejamento do Dia</h2>
+      <ul>
+        <li>Matemática - 1h</li>
+        <li>História - 40min</li>
+        <li>Revisão de Inglês</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <button class="pin-btn" data-pinned="false">📌</button>
+    </div>
+  </section>
+
+  <!-- Card 2 -->
+  <section class="card">
+    <div class="card-header drag-handle">
+      <div class="drag-lines">
+        <div class="line-short"></div>
+        <div class="line-long"></div>
+      </div>
+    </div>
+    <div class="card-content">
+      <h2>Matérias</h2>
+      <ul>
+        <li>Matemática</li>
+        <li>Português</li>
+        <li>História</li>
+        <li>Geografia</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <button class="pin-btn" data-pinned="false">📌</button>
+    </div>
+  </section>
+
+  <!-- Card 3 - Tarefas -->
+  <section class="card">
+    <div class="card-header drag-handle">
+      <div class="drag-lines">
+        <div class="line-short"></div>
+        <div class="line-long"></div>
+      </div>
+    </div>
+    <div class="card-content">
+      <h2>Tarefas</h2>
+      <div class="taskInput">
+        <input type="text" id="novaTarefa" placeholder="Nova tarefa..." />
+        <button onclick="addTarefa()">Adicionar</button>
+      </div>
+      <ul id="listaTarefas">
+        <li onclick="remover(this)">✔ Fazer exercícios de matemática</li>
+        <li onclick="remover(this)">✔ Ler capítulo de história</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <button class="pin-btn" data-pinned="false">📌</button>
+    </div>
+  </section>
+
+  <!-- Card 4 - Whiteboard -->
+  <section class="card whiteboardCard">
+    <div class="card-header drag-handle">
+      <div class="drag-lines">
+        <div class="line-short"></div>
+        <div class="line-long"></div>
+      </div>
+    </div>
+    <div class="card-content">
+      <h2>Whiteboard</h2>
+      <canvas id="board"></canvas>
+      <div class="boardButtons">
+        <button onclick="limparCanvas()">Limpar</button>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="pin-btn" data-pinned="false">📌</button>
+    </div>
+  </section>
+
+</main>
+<footer>Study+ © 2026</footer>
+<script src="script.js"></script>
+</body>
+</html>

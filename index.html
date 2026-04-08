@@ -1,53 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Study+ | Organizador de Estudos</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Study+ | Organize seus estudos</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
-<body>
-<header><a href="inicio.html"><img src="img/porta.png" class="sair" alt=""></a></header>
-<main class="container">
-  <section class="card" draggable="true">
-    <h2>Planejamento do Dia</h2>
-    <ul>
-      <li>Matemática - 1h</li>
-      <li>História - 40min</li>
-      <li>Revisão de Inglês</li>
-    </ul>
-  </section>
-  <section class="card" draggable="true">
-    <h2>Matérias</h2>
-    <ul>
-      <li>Matemática</li>
-      <li>Português</li>
-      <li>História</li>
-      <li>Geografia</li>
-    </ul>
-  </section>
-  <section class="card" draggable="true">
-    <h2>Tarefas</h2>
-    <div class="taskInput">
-      <input type="text" id="novaTarefa" placeholder="Nova tarefa..." />
-      <button onclick="addTarefa()">Adicionar</button>
+<body class="body2">
+  <!-- Container principal da landing page -->
+  <div class="landing-container">
+    <div class="landing-card">
+      <h1 class="landing-logo">Study<span>+</span></h1>
+      <p class="landing-tagline">Organize, arraste, desenhe e aprenda mais.</p>
+      <p class="landing-desc">
+        Planeje suas matérias, crie tarefas, use o whiteboard e personalize seus estudos com uma experiência fluida e divertida.
+      </p>
+      <a href="cadastro.html" class="btn-entrar">Cadastre-se agora →</a>
+      <a href="principal.html">Teste da pagina principal</a>
     </div>
-    <ul id="listaTarefas">
-      <li onclick="remover(this)">✔ Fazer exercícios de matemática</li>
-      <li onclick="remover(this)">✔ Ler capítulo de história</li>
-    </ul>
-  </section>
-  <section class="card whiteboardCard" draggable="true">
-    <h2>Whiteboard</h2>
-    <canvas id="board"></canvas>
-    <div class="boardButtons">
-      <button onclick="limpar()">Limpar</button>
+    <div class="landing-footer">
+      <span>🚀 Foco & Produtividade</span>
     </div>
-  </section>
-
-</main>
-<footer>Study+ © 2026</footer>
-<script src="script.js"></script>
+  </div>
 </body>
 </html>

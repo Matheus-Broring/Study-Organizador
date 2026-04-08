@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-body {
+.body1 {
     background: #fff8e8;
     color: #333;
     display: flex;
@@ -16,18 +16,29 @@ body {
 }
 
 .sair {
-    height: 10vh;
-    width: 4vw;
-    min-width: 35px;
-    max-width: 50px;
-    display: grid;
-    place-items: center;
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 10px;
     z-index: 1000;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
     cursor: pointer;
+}
+
+.sair:hover {
+    transform: scale(1.1);
+}
+
+.sair img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
 .sair.clicado {
@@ -35,7 +46,7 @@ body {
 }
 
 header {
-    background: #ffbd59;
+    background: #d8993a;
     text-align: center;
     padding: clamp(15px, 4vw, 25px);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
@@ -49,12 +60,6 @@ header a {
     left: 0;
 }
 
-img.sair {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
 .container {
     flex: 1;
     display: grid;
@@ -65,7 +70,7 @@ img.sair {
 }
 
 .card {
-    background: white;
+    background: rgb(212, 212, 212);
     padding: clamp(15px, 4vw, 20px);
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
@@ -74,6 +79,7 @@ img.sair {
     user-select: none;
     position: relative;
 }
+
 .card.dragging {
     opacity: 0.5;
     transform: rotate(5deg);
@@ -90,7 +96,7 @@ img.sair {
 
 .card h2 {
     margin-bottom: 10px;
-    color: #ffbd59;
+    color: #d8993a;
     font-size: clamp(1.1rem, 3vw, 1.4rem);
 }
 
@@ -107,7 +113,7 @@ img.sair {
 }
 
 .card li:hover {
-    background: #fff3d9;
+    background: #20117757;
 }
 
 .taskInput {
@@ -127,7 +133,7 @@ img.sair {
 .taskInput button {
     padding: 8px 12px;
     border: none;
-    background: #ffbd59;
+    background: #d8993a;
     border-radius: 6px;
     cursor: pointer;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
@@ -137,7 +143,7 @@ img.sair {
 canvas {
     width: 100%;
     height: clamp(200px, 25vw, 300px);
-    border: 2px solid #ffbd59;
+    border: 2px solid #1518a081;
     border-radius: 8px;
     background: white;
     cursor: crosshair;
@@ -154,7 +160,7 @@ canvas {
 .boardButtons button {
     padding: 8px 15px;
     border: none;
-    background: #ffbd59;
+    background: #d8993a;
     border-radius: 6px;
     cursor: pointer;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
@@ -181,11 +187,10 @@ canvas {
 footer {
     text-align: center;
     padding: clamp(10px, 3vw, 15px);
-    background: #ffbd59;
+    background: #d8993a;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
@@ -207,5 +212,341 @@ footer {
     
     .card {
         padding: 12px;
+    }
+}
+
+.body2 {
+    height: 100%;
+    margin: 0;
+}
+
+.principal {
+    width: 100%;
+    height: 100vh;
+    background-color: aqua;
+}
+
+.body2 {
+    background: linear-gradient(135deg, #0b2b26 0%, #163a2f 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+    padding: 1.5rem;
+}
+
+.landing-container {
+    max-width: 750px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    transition: transform 0.25s ease;
+    text-align: center;
+}
+
+.landing-card {
+    padding: 2.5rem 2rem;
+    color: #fff3e0;
+}
+
+.landing-logo {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #ffbd59, #ff9f2e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.landing-logo span {
+    background: none;
+    color: #ffbd59;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+}
+
+.landing-tagline {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #ffe2b5;
+}
+
+.landing-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+    opacity: 0.9;
+}
+
+.btn-entrar {
+    display: inline-block;
+    background: #ffbd59;
+    color: #1e2f2a;
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 0 #b1620e;
+    transform: translateY(-2px);
+}
+
+.btn-entrar:hover {
+    background: #ffa82e;
+    transform: translateY(0px);
+    box-shadow: 0 2px 0 #b1620e;
+}
+
+.landing-footer {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.85rem;
+    color: #ddcfa0;
+}
+
+@media (max-width: 550px) {
+    .landing-logo {
+        font-size: 2.8rem;
+    }
+    .landing-tagline {
+        font-size: 1.2rem;
+    }
+    .landing-card {
+        padding: 1.8rem 1.2rem;
+    }
+    .btn-entrar {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+.card-header {
+    padding: 12px 12px 8px 12px;
+    margin: -20px -20px 0 -20px;
+    background: #ffbd59;
+    border-radius: 12px 12px 0 0;
+    cursor: grab;
+    user-select: none;
+    text-align: center;
+}
+
+.card-header:active {
+    cursor: grabbing;
+}
+
+.drag-lines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.line-short {
+    width: 40px;
+    height: 4px;
+    background-color: #4a3b1f;
+    border-radius: 2px;
+}
+
+.line-long {
+    width: 70px;
+    height: 4px;
+    background-color: #4a3b1f;
+    border-radius: 2px;
+}
+
+.card-footer {
+    margin: 12px -20px -20px -20px;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 0 0 12px 12px;
+    text-align: right;
+    border-top: 1px solid #ddd;
+}
+
+.pin-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: transform 0.1s;
+    padding: 4px 8px;
+    line-height: 1;
+}
+
+.pin-btn:hover {
+    transform: scale(1.1);
+}
+
+.card.pinned {
+    opacity: 0.85;
+}
+
+.card.pinned .card-header {
+    cursor: default;
+}
+
+.card-content h2 {
+    margin-bottom: 10px;
+    color: #d8993a;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+}
+
+.cadastro-body {
+    background: linear-gradient(135deg, #0b2b26 0%, #163a2f 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.cadastro-container {
+    max-width: 500px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    transition: transform 0.25s ease;
+}
+
+.cadastro-container:hover {
+    transform: scale(1.01);
+}
+
+.cadastro-card {
+    padding: 2rem 2rem 1.5rem 2rem;
+    color: #fff3e0;
+}
+
+.cadastro-logo {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ffbd59, #ff9f2e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: center;
+}
+
+.cadastro-logo span {
+    background: none;
+    color: #ffbd59;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+}
+
+.cadastro-tagline {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #ffe2b5;
+}
+
+.cadastro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #ffbd59;
+}
+
+.input-group input {
+    padding: 0.8rem 1rem;
+    border-radius: 2rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+    font-family: 'Oswald', sans-serif;
+}
+
+.input-group input:focus {
+    background: white;
+    box-shadow: 0 0 0 2px #ffbd59;
+}
+
+.btn-cadastrar {
+    background: #ffbd59;
+    color: #1e2f2a;
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 #b1620e;
+    transform: translateY(-2px);
+    border: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-family: 'Oswald', sans-serif;
+}
+
+.btn-cadastrar:hover {
+    background: #ffa82e;
+    transform: translateY(0px);
+    box-shadow: 0 1px 0 #b1620e;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #ddcfa0;
+}
+
+.login-link a {
+    color: #ffbd59;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.cadastro-footer {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font-size: 0.8rem;
+    color: #ddcfa0;
+}
+
+@media (max-width: 550px) {
+    .cadastro-logo {
+        font-size: 2.5rem;
+    }
+    .cadastro-card {
+        padding: 1.5rem;
+    }
+    .btn-cadastrar {
+        font-size: 1rem;
+        padding: 0.7rem;
     }
 }
