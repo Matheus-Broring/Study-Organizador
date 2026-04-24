@@ -22,7 +22,7 @@
     z-index: 1000;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(255,255,255,0);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -31,25 +31,13 @@
     cursor: pointer;
 }
 
-.sair:hover {
-    transform: scale(1.1);
-}
-
-.sair img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-
-.sair.clicado {
-    transform: translateY(2px);
-}
+.sair:hover { transform: scale(1.1); }
 
 header {
     background: #d8993a;
     text-align: center;
     padding: clamp(15px, 4vw, 25px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
     width: 100%;
     position: relative;
 }
@@ -63,38 +51,74 @@ header a {
 .container {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 350px), 1fr));
-    gap: clamp(15px, 4vw, 25px);
-    padding: clamp(15px, 5vw, 30px);
-    padding-top: 70px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 340px;
+    gap: 20px;
+    padding: 80px 30px 30px 30px;
+    align-content: start;
 }
 
 .card {
-    background: rgb(212, 212, 212);
-    padding: clamp(15px, 4vw, 20px);
+    background: rgb(212,212,212);
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    transition: all 0.3s ease;
-    cursor: grab;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: box-shadow 0.2s ease;
     user-select: none;
-    position: relative;
-}
-
-.card.dragging {
-    opacity: 0.5;
-    transform: rotate(5deg);
-}
-
-.card:active {
-    cursor: grabbing;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 340px;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.18);
 }
 
-.card h2 {
+.card.pinned .card-header {
+    cursor: default;
+}
+
+.card-header {
+    padding: 10px 12px;
+    background: #ffbd59;
+    border-radius: 12px 12px 0 0;
+    cursor: grab;
+    user-select: none;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.card-header:active { cursor: grabbing; }
+
+.drag-lines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.line-short {
+    width: 40px;
+    height: 4px;
+    background-color: #4a3b1f;
+    border-radius: 2px;
+}
+
+.line-long {
+    width: 70px;
+    height: 4px;
+    background-color: #4a3b1f;
+    border-radius: 2px;
+}
+
+.card-content {
+    flex: 1;
+    padding: 15px 20px;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.card-content h2 {
     margin-bottom: 10px;
     color: #d8993a;
     font-size: clamp(1.1rem, 3vw, 1.4rem);
@@ -105,16 +129,13 @@ header a {
 }
 
 .card li {
-    padding: 8px;
-    cursor: pointer;
+    padding: 6px 8px;
     border-radius: 6px;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
-.card li:hover {
-    background: #20117757;
-}
+.card li:hover { background: #20117757; }
 
 .taskInput {
     display: flex;
@@ -128,6 +149,7 @@ header a {
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
+    font-family: 'Oswald', sans-serif;
 }
 
 .taskInput button {
@@ -137,12 +159,13 @@ header a {
     border-radius: 6px;
     cursor: pointer;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
+    font-family: 'Oswald', sans-serif;
     white-space: nowrap;
 }
 
 canvas {
     width: 100%;
-    height: clamp(200px, 25vw, 300px);
+    height: 180px;
     border: 2px solid #1518a081;
     border-radius: 8px;
     background: white;
@@ -164,25 +187,29 @@ canvas {
     border-radius: 6px;
     cursor: pointer;
     font-size: clamp(0.8rem, 2vw, 0.95rem);
+    font-family: 'Oswald', sans-serif;
 }
 
-.fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    z-index: 2000;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+.card-footer {
+    padding: 8px 12px;
+    background: #f0f0f0;
+    border-radius: 0 0 12px 12px;
+    text-align: right;
+    border-top: 1px solid #ddd;
+    flex-shrink: 0;
 }
 
-.fullscreen canvas {
-    height: 80vh;
-    flex: 1;
+.pin-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: transform 0.1s;
+    padding: 4px 8px;
+    line-height: 1;
 }
+
+.pin-btn:hover { transform: scale(1.1); }
 
 footer {
     text-align: center;
@@ -194,36 +221,17 @@ footer {
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
-        padding: 10px;
-        padding-top: 80px;
+        grid-auto-rows: auto;
+        padding: 70px 15px 20px 15px;
         gap: 15px;
     }
-    
-    .sair {
-        width: 8vw;
-        min-width: 40px;
-    }
-}
-
-@media (max-width: 480px) {
-    header {
-        padding: 10px;
-    }
-    
     .card {
-        padding: 12px;
+        height: auto;
+        min-height: 280px;
     }
-}
-
-.body2 {
-    height: 100%;
-    margin: 0;
-}
-
-.principal {
-    width: 100%;
-    height: 100vh;
-    background-color: aqua;
+    canvas {
+        height: 160px;
+    }
 }
 
 .body2 {
@@ -240,11 +248,10 @@ footer {
 .landing-container {
     max-width: 750px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(12px);
     border-radius: 2.5rem;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
-    transition: transform 0.25s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.2);
     text-align: center;
 }
 
@@ -308,97 +315,9 @@ footer {
 
 .landing-footer {
     padding: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255,255,255,0.2);
     font-size: 0.85rem;
     color: #ddcfa0;
-}
-
-@media (max-width: 550px) {
-    .landing-logo {
-        font-size: 2.8rem;
-    }
-    .landing-tagline {
-        font-size: 1.2rem;
-    }
-    .landing-card {
-        padding: 1.8rem 1.2rem;
-    }
-    .btn-entrar {
-        padding: 0.7rem 1.5rem;
-        font-size: 1rem;
-    }
-}
-
-.card-header {
-    padding: 12px 12px 8px 12px;
-    margin: -20px -20px 0 -20px;
-    background: #ffbd59;
-    border-radius: 12px 12px 0 0;
-    cursor: grab;
-    user-select: none;
-    text-align: center;
-}
-
-.card-header:active {
-    cursor: grabbing;
-}
-
-.drag-lines {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-}
-
-.line-short {
-    width: 40px;
-    height: 4px;
-    background-color: #4a3b1f;
-    border-radius: 2px;
-}
-
-.line-long {
-    width: 70px;
-    height: 4px;
-    background-color: #4a3b1f;
-    border-radius: 2px;
-}
-
-.card-footer {
-    margin: 12px -20px -20px -20px;
-    padding: 10px;
-    background: #f0f0f0;
-    border-radius: 0 0 12px 12px;
-    text-align: right;
-    border-top: 1px solid #ddd;
-}
-
-.pin-btn {
-    background: none;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: transform 0.1s;
-    padding: 4px 8px;
-    line-height: 1;
-}
-
-.pin-btn:hover {
-    transform: scale(1.1);
-}
-
-.card.pinned {
-    opacity: 0.85;
-}
-
-.card.pinned .card-header {
-    cursor: default;
-}
-
-.card-content h2 {
-    margin-bottom: 10px;
-    color: #d8993a;
-    font-size: clamp(1.1rem, 3vw, 1.4rem);
 }
 
 .cadastro-body {
@@ -413,16 +332,14 @@ footer {
 .cadastro-container {
     max-width: 500px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(12px);
     border-radius: 2.5rem;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.2);
     transition: transform 0.25s ease;
 }
 
-.cadastro-container:hover {
-    transform: scale(1.01);
-}
+.cadastro-container:hover { transform: scale(1.01); }
 
 .cadastro-card {
     padding: 2rem 2rem 1.5rem 2rem;
@@ -478,7 +395,7 @@ footer {
     padding: 0.8rem 1rem;
     border-radius: 2rem;
     border: none;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255,255,255,0.9);
     font-size: 1rem;
     outline: none;
     transition: all 0.2s;
@@ -493,7 +410,6 @@ footer {
 .btn-cadastrar {
     background: #ffbd59;
     color: #1e2f2a;
-    text-decoration: none;
     padding: 0.8rem 1rem;
     border-radius: 3rem;
     font-weight: 600;
@@ -526,27 +442,22 @@ footer {
     font-weight: 500;
 }
 
-.login-link a:hover {
-    text-decoration: underline;
-}
+.login-link a:hover { text-decoration: underline; }
 
 .cadastro-footer {
     padding: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255,255,255,0.2);
     text-align: center;
     font-size: 0.8rem;
     color: #ddcfa0;
 }
 
 @media (max-width: 550px) {
-    .cadastro-logo {
-        font-size: 2.5rem;
-    }
-    .cadastro-card {
-        padding: 1.5rem;
-    }
-    .btn-cadastrar {
-        font-size: 1rem;
-        padding: 0.7rem;
-    }
+    .cadastro-logo { font-size: 2.5rem; }
+    .cadastro-card { padding: 1.5rem; }
+    .btn-cadastrar { font-size: 1rem; padding: 0.7rem; }
+    .landing-logo { font-size: 2.8rem; }
+    .landing-tagline { font-size: 1.2rem; }
+    .landing-card { padding: 1.8rem 1.2rem; }
+    .btn-entrar { padding: 0.7rem 1.5rem; font-size: 1rem; }
 }
