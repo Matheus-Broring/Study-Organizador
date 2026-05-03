@@ -11,7 +11,6 @@
 <header><a href="index.html"><img src="img/porta.png" class="sair" alt="Sair"></a></header>
 <main class="container">
   
-  <!-- Card 1 -->
   <section class="card">
     <div class="card-header drag-handle">
       <div class="drag-lines">
@@ -32,7 +31,6 @@
     </div>
   </section>
 
-  <!-- Card 2 -->
   <section class="card">
     <div class="card-header drag-handle">
       <div class="drag-lines">
@@ -54,7 +52,6 @@
     </div>
   </section>
 
-  <!-- Card 3 - Tarefas -->
   <section class="card">
     <div class="card-header drag-handle">
       <div class="drag-lines">
@@ -78,7 +75,6 @@
     </div>
   </section>
 
-  <!-- Card 4 - Whiteboard -->
   <section class="card whiteboardCard">
     <div class="card-header drag-handle">
       <div class="drag-lines">
@@ -98,8 +94,30 @@
     </div>
   </section>
 
+  <section class="card">
+    <div class="card-header drag-handle">
+      <div class="drag-lines">
+        <div class="line-short"></div>
+        <div class="line-long"></div>
+      </div>
+    </div>
+    <div class="card-content">
+      <h2>Google Agenda</h2>
+      <div id="google-signin" style="text-align:center; padding: 1rem 0;">
+        <button onclick="loginGoogle()" class="btn-google">Conectar Google Agenda</button>
+      </div>
+      <ul id="listaEventos" style="display:none;"></ul>
+    </div>
+    <div class="card-footer">
+      <button class="pin-btn" data-pinned="false">📌</button>
+    </div>
+  </section>
+
 </main>
 <footer>Study+ © 2026</footer>
 <script src="script.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://accounts.google.com/gsi/client"></script>
+<script src="agenda.js"></script>
 </body>
 </html>
